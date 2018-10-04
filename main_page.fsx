@@ -22,4 +22,8 @@ let solution (n:int) (x:Set<int>) =
         if not (List.isEmpty newNfiltered) then p1+(solution' newNfiltered x) else p1
     solution' [n] x
 
-solution 4 (Set.empty.Add(1).Add(2))
+
+solution 1 (Set.empty.Add(1).Add(2)) = 1
+solution 2 (Set.empty.Add(1).Add(2)) = 2
+solution 3 (Set.empty.Add(1).Add(2)) = 3
+solution 4 (Set.empty.Add(1).Add(2)) = 5
