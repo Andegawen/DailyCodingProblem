@@ -8,4 +8,19 @@ let solution col =
     let value = col |> Array.reduce (*) 
     col |> Array.map (fun el-> value/el)
 
+//foldi : http://www.fssnip.net/2Z/title/Extensions-to-the-Fold-function
+let foldi fold first source  =
+       source 
+       |> Array.fold(fun (prev,i) c -> (fold i prev c,i + 1)) (first,0)
+       |> fst
+let solution2 (col:int array) =
+    let acc = (Array.create (Array.length col) 1)
+    foldi (fun index acc el-> 
+            acc |> Array.mapi (fun it elAcc->if it=index then elAcc else elAcc*el) 
+          ) acc col
+
 solution [|1;2;3|] = [|6;3;2|]
+solution [|1; 2; 3; 4; 5|] = [|120; 60; 40; 30; 24|]
+
+solution2 [|1;2;3|] = [|6;3;2|]
+solution2 [|1; 2; 3; 4; 5|] = [|120; 60; 40; 30; 24|]
